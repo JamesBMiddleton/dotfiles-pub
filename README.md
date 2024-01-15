@@ -4,4 +4,4 @@
 
 `ln -s .config/nvim/.vimrc ~/.vimrc`
 
-`curl https://raw.githubusercontent.com/JamesBMiddleton/dotfiles/main/nvim/.vimrc > $HOME/.vimrc`
+`curl https://raw.githubusercontent.com/JamesBMiddleton/dotfiles-pub/main/nvim/.vimrc > $HOME/.vimrc`
