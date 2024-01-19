@@ -22,9 +22,6 @@ keymap("n", "<leader>o", ":Telescope find_files<CR>", opts)
 -- view open buffers
 keymap("n", "<leader>f", ":Telescope buffers<CR>", opts) -- mnemonic < ease of use
 
--- don't include newline when going to end of line in visual mode
-keymap("v", "$", "$h", opts) -- mnemonic < ease of use
-
 -- hacky way to prevent focusing on nvim-tree on buffer close...
 vim.cmd([[cmap bd Bd]])
 vim.api.nvim_create_user_command("Bd", function()
@@ -176,8 +173,4 @@ keymap("n", "<C-w><C-h>", function()
         require "nvim-tree.api".tree.toggle(false, true)
     end
 end, opts)
-
-
-
-
 

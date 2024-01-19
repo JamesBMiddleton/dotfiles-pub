@@ -22,9 +22,17 @@ set ttimeoutlen=1
 set ttyfast
 set showmode
 set backspace=2
-colorscheme slate
-syntax on 
+colorscheme default
+syntax on
 filetype on 
+set termguicolors
+set nocursorline
+
+autocmd InsertEnter,InsertLeave * set cul!
+hi Normal guifg=#FFFFFF guibg=#1e1e1e
+hi CursorLine cterm=underline ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+hi LineNr cterm=NONE guifg=#808080 guibg=#1e1e1e ctermfg=White ctermbg=NONE
+hi CursorLineNr cterm=NONE term=NONE gui=NONE guifg=NONE ctermfg=NONE
 
 " better window navigation
 nnoremap <C-h> <C-w>h
@@ -50,3 +58,53 @@ xnoremap p P
 " xterm cursor change between normal and insert
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+let s:comment_map = { 
+    \   "c": '\/\/',
+    \   "cpp": '\/\/',
+    \   "go": '\/\/',
+    \   "java": '\/\/',
+    \   "javascript": '\/\/',
+    \   "lua": '--',
+    \   "scala": '\/\/',
+    \   "php": '\/\/',
+    \   "python": '#',
+    \   "ruby": '#',
+    \   "rust": '\/\/',
+    \   "sh": '#',
+    \   "desktop": '#',
+    \   "fstab": '#',
+    \   "conf": '#',
+    \   "profile": '#',
+    \   "bashrc": '#',
+    \   "bash_profile": '#',
+    \   "mail": '>',
+    \   "eml": '>',
+    \   "bat": 'REM',
+    \   "ahk": ';',
+    \   "vim": '"',
+    \   "tex": '%',
+    \ }
+
+function! ToggleComment()
+    if has_key(s:comment_map, &filetype)
+        let comment_leader = s:comment_map[&filetype]
+        if getline('.') =~ "^\\s*" . comment_leader . " " 
+            " Uncomment the line
+            execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
+        else 
+            if getline('.') =~ "^\\s*" . comment_leader
+                " Uncomment the line
+                execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
+            else
+                " Comment the line
+                execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
+            end
+        end
+    else
+        echo "No comment leader found for filetype"
+    end
+endfunction
+
+nnoremap gcc :call ToggleComment()<cr>
+vnoremap gc :call ToggleComment()<cr>
