@@ -22,17 +22,22 @@ set ttimeoutlen=1
 set ttyfast
 set showmode
 set backspace=2
-colorscheme default
+set notermguicolors
+set nocursorline
 syntax on
 filetype on 
-set termguicolors
-set nocursorline
 
 autocmd InsertEnter,InsertLeave * set cul!
-hi Normal guifg=#FFFFFF guibg=#1e1e1e
+
+" Not all terminals support termguicolors
+" cterm colours could be 8bit, 16bit or 24bit - (see :help cterm)
+" the actual colour of a cterm value is dependent on the terminal
+" Conclusion - there are no truly portable colorschemes
+colorscheme industry
 hi CursorLine cterm=underline ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-hi LineNr cterm=NONE guifg=#808080 guibg=#1e1e1e ctermfg=White ctermbg=NONE
+hi LineNr cterm=NONE guifg=#808080 guibg=NONE ctermfg=White ctermbg=NONE
 hi CursorLineNr cterm=NONE term=NONE gui=NONE guifg=NONE ctermfg=NONE
+
 
 " better window navigation
 nnoremap <C-h> <C-w>h
