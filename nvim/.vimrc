@@ -56,6 +56,9 @@ vnoremap $ $h
 nnoremap J 10<C-e>M
 nnoremap K 10<C-y>M
 nnoremap <C-e> J
+vnoremap J 10<C-e>M
+vnoremap K 10<C-y>M
+vnoremap <C-e> J
 
 " don't yank text over paste selection in visual mode
 xnoremap p P
