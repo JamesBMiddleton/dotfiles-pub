@@ -152,8 +152,7 @@ mkvim()
     cd $dir
 }
 
-
-
+alias ..='cd ..'
 
 # ---------- Debian distro specific ----------- #
 
@@ -170,5 +169,4 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
 

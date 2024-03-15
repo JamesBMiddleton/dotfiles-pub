@@ -2,6 +2,7 @@
 
 local set = vim.opt
 
+set.syntax = on;
 set.autowrite = true -- autosave when quitting / changing buffers
 set.undofile = true -- save undo history between sessions
 set.termguicolors = true -- use the terminal's color palette rather than nvim's

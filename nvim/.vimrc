@@ -24,7 +24,7 @@ set showmode
 set backspace=2
 set notermguicolors
 set nocursorline
-syntax on
+syntax off
 filetype on 
 
 autocmd InsertEnter,InsertLeave * set cul!
@@ -33,7 +33,7 @@ autocmd InsertEnter,InsertLeave * set cul!
 " cterm colours could be 8bit, 16bit or 24bit - (see :help cterm)
 " the actual colour of a cterm value is dependent on the terminal
 " Conclusion - there are no truly portable colorschemes
-colorscheme industry
+" colorscheme industry
 hi CursorLine cterm=underline ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 hi LineNr cterm=NONE guifg=#808080 guibg=NONE ctermfg=White ctermbg=NONE
 hi CursorLineNr cterm=NONE term=NONE gui=NONE guifg=NONE ctermfg=NONE
