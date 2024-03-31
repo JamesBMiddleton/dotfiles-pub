@@ -72,10 +72,10 @@ return require("packer").startup(function(use)
     use {"cocopon/iceberg.vim", commit="e01ac08c2202e7544531f4d806f6893539da6471"}  
 
     -- markdown link support
-    use "jakewvincent/mkdnflow.nvim, commit="ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3"}
+    use {"jakewvincent/mkdnflow.nvim", commit="4e022b2781cc1d8c3076e35d174190fcddd3f884"}
 
     -- web browser based previewing (install without yarn or npm)
-    use({ "iamcco/markdown-preview.nvim", commit="iamcco/markdown-preview.nvim"}
-        run = function() vim.fn["mkdp#util#install"]() end,})
+    use { "iamcco/markdown-preview.nvim", commit="a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+        run = function() vim.fn["mkdp#util#install"]() end,} 
     
 end)
