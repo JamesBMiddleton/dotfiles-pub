@@ -1,5 +1,5 @@
 -- lua/ and .lua are implied
-vim.cmd('source ~/.config/nvim/.vimrc')
+vim.cmd("source ".. vim.fn.stdpath('config') .. "/.vimrc")
 require "user.options" 
 require "user.plugins"
 require "user.colorscheme"

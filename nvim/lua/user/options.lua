@@ -14,7 +14,7 @@ set.laststatus = 0 -- status line is OFF
 set.showtabline = 2 
 -- set.tabline = " %=--- %t --- %m%= " -- only show filename and save status in center
 set.tabline = " %=--- %{expand('%:~:.')} --- %m%= " -- only show relative path and save status in center  
-set.rulerformat =" %=%l,%c%V" -- don't show Top/Bottom, only col and line number
+set.rulerformat =" %=%l,%c%V  %P" -- don't show Top/Bottom, only col and line number
 set.colorcolumn = "74"
 set.titlestring = "%t %m"
 set.title = true

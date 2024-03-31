@@ -37,7 +37,7 @@ return require("packer").startup(function(use)
     use {"nvim-lua/plenary.nvim", commit="8aad4396840be7fc42896e3011751b7609ca4119"}
 
     -- bg = #1e1e1e
-	use {"JamesBMiddleton/darkplus.nvim", commit="d1ccb13b17614bf89545231f2ba9e0e01e4c1c23"} 
+	use {"JamesBMiddleton/darkplus.nvim"} 
 
     -- The completion plugin
     use {"hrsh7th/nvim-cmp", commit="97dc716fc914c46577a4f254035ebef1aa72558a"}
@@ -79,14 +79,14 @@ return require("packer").startup(function(use)
 	use {"numToStr/Comment.nvim", commit="0236521ea582747b58869cb72f70ccfa967d2e89"} 
 
     ------------ MKVIM --------------
-
+    
     -- bg = #e8e9ec
-    -- use {"cocopon/iceberg.vim", commit="e01ac08c2202e7544531f4d806f6893539da6471"}  
+    use {"cocopon/iceberg.vim", commit="e01ac08c2202e7544531f4d806f6893539da6471"}  
 
     -- markdown link support
-    -- use "jakewvincent/mkdnflow.nvim" 
+    use "jakewvincent/mkdnflow.nvim" 
 
     -- web browser based previewing (install without yarn or npm)
-    -- use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end,})
+    use({ "iamcco/markdown-preview.nvim", run = function() vim.fn["mkdp#util#install"]() end,})
     
 end)
