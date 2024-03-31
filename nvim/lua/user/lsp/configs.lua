@@ -25,10 +25,11 @@ mason.setup()
 mason_lspconfig.setup
 {
     ensure_installed = { 
-        "clangd", 
-        "pyright", 
-        "rust_analyzer",
-        "bashls",
+        "clangd@17.0.3", 
+        "pyright@1.1.356", 
+        "rust_analyzer@2024-03-25",
+        "bashls@5.1.2",
+        -- "shellcheck@0.10.0 -- must installed be done manually
     },
 }
 
