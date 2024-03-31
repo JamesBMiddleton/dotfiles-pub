@@ -4,21 +4,9 @@ local fn = vim.fn
 -- stdpath = the default place nvim plugins store their data; ".local/share/nvim"
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-        "&&",
-        "cd",
-        install_path,
-        "&&",
-        "git",
-        "checkout",
-        "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3"
-	})
+	fn.system({ "git", "clone", "--depth", "1", 
+                "https://github.com/wbthomason/packer.nvim", install_path})
+    fn.system({ "git", "-C", install_path, "checkout", "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3" })
 	print("Installing packer close and reopen Neovim...")
 	vim.cmd([[packadd packer.nvim]])
 end
