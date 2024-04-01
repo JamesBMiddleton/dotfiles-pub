@@ -15,17 +15,17 @@ end
 -- by 'put' I mean literally clone the repo there. this means they'll start when nvim is opened.
 return require("packer").startup(function(use)
 
-    -- default config for LSP magic 
-    use "neovim/nvim-lspconfig" 
+    -- bg = #1e1e1e
+	use {"JamesBMiddleton/darkplus.nvim"} 
 
-    -- package manager
+    -- packer will manage itself
     use {"wbthomason/packer.nvim", commit="ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3"}
+
+    -- default config for LSP magic 
+    use {"neovim/nvim-lspconfig", commit="f4619ab31fc4676001ea05ae8200846e6e7700c7"}
 
     -- lua functions required by some plugins
     use {"nvim-lua/plenary.nvim", commit="8aad4396840be7fc42896e3011751b7609ca4119"}
-
-    -- bg = #1e1e1e
-	use {"JamesBMiddleton/darkplus.nvim"} 
 
     -- The completion plugin
     use {"hrsh7th/nvim-cmp", commit="97dc716fc914c46577a4f254035ebef1aa72558a"}
@@ -47,9 +47,6 @@ return require("packer").startup(function(use)
 
     -- package manager for LSP servers, linters and formatters
     use {"williamboman/mason.nvim", commit="751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10"}
-
-    -- bridge between mason and lspconfig
-    use {"williamboman/mason-lspconfig.nvim", commit="2ba17cecfde8b8c7c7c287909a1e4de895223df6"}
 
     -- syntax highlighting
 	use {"nvim-treesitter/nvim-treesitter", run = "TSUpdate", commit="f84887230af1f7581e29ccd5d93f59d98058d565"} 

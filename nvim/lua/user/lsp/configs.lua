@@ -1,5 +1,4 @@
 local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
 -- get Node dependency
@@ -22,16 +21,7 @@ vim.fn.setenv("PATH", new_path)
 
 mason.setup()
 
-mason_lspconfig.setup
-{
-    ensure_installed = { 
-        "clangd@17.0.3", 
-        "pyright@1.1.356", 
-        "rust_analyzer@2024-03-25",
-        "bashls@5.1.2",
-        -- "shellcheck@0.10.0 -- must installed be done manually
-    },
-}
+-- MasonInstall shellcheck@v0.10.0 clangd@17.0.3 pyright@1.1.356 bash-language-server@5.1.2 rust-analyzer@2024-04-01
 
 local opts = {
     on_attach = require("user.lsp.handlers").on_attach,
@@ -42,6 +32,6 @@ local opts = {
 lspconfig.pyright.setup(opts)
 lspconfig.clangd.setup(opts)
 lspconfig.rust_analyzer.setup(opts)
-lspconfig.bashls.setup(opts) -- !! requires shellcheck (available with mason) !!
+lspconfig.bashls.setup(opts) 
 
 
