@@ -12,9 +12,10 @@ telescope.setup{
   pickers = {
     find_files = {
         theme = "ivy",
+        hidden = true,
         previewer = false,
         results_title = false,
-        -- no_ignore = false, -- true for .gitignore (broken for some reason)
+        no_ignore = false, -- true to .gitignore (broken for some reason)
         layout_config = {
             height = 10
         },
@@ -46,3 +47,25 @@ telescope.setup{
 }
 
 vim.cmd([[autocmd User TelescopePreviewerLoaded setlocal wrap]])
+
+
+--- KEYMAPS ---
+
+local keymap = vim.keymap.set
+local opts = {noremap = true, silent = true}
+
+-- grep find text across working directory
+keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
+
+-- open files in working directory
+keymap("n", "<leader>o", ":Telescope find_files<CR>", opts)
+
+-- view open buffers
+keymap("n", "<leader>f", ":Telescope buffers<CR>", opts) -- mnemonic < ease of use
+
+-- find files ignored by git
+vim.api.nvim_create_user_command("FindIgnored", function()
+    require "telescope.builtin".find_files{no_ignore=true}
+end, {}) 
+
+

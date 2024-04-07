@@ -135,3 +135,94 @@ local function on_attach(bufnr)
 
 
 end
+
+
+--- KEYMAPS ---
+
+local keymap = vim.keymap.set
+local opts = {noremap = true, silent = true}
+
+-- toggle nvim-tree focus
+keymap("n", "<leader>e", function()
+    local api = require "nvim-tree.api"
+    if vim.fn.expand("%") == "NvimTree_1" then
+        api.tree.close()
+        api.tree.toggle(false, true)
+    else
+        api.tree.open()
+    end
+end, opts)
+
+-- toggle nvim-tree
+keymap("n", "<leader>E", ":NvimTreeToggle<CR>", opts)
+
+
+-- OVERRIDE: close buffer without focusing nvim-tree
+vim.cmd([[cmap bd Bd]])
+vim.api.nvim_create_user_command("Bd", function()
+    local ok, result 
+    if require "nvim-tree.view".is_visible() then
+        local api = require "nvim-tree.api"
+        api.tree.close()
+        ok, result = pcall(vim.cmd, 'bd')
+        api.tree.toggle(false, true)
+    else
+        ok, result = pcall(vim.cmd, 'bd')
+    end
+    if not ok then
+        vim.cmd([[echo "E88: No write since last change for buffer (add ! to override)"]])
+    end
+end, {}) 
+
+-- OVERRIDE: force close buffer without focusing nvim-tree
+vim.cmd([[cmap bd! Bdforce]])
+vim.api.nvim_create_user_command("Bdforce", function()
+    if require "nvim-tree.view".is_visible() then
+        local api = require "nvim-tree.api"
+        api.tree.close()
+        vim.cmd([[bd!]])
+        api.tree.toggle(false, true)
+    else
+        vim.cmd([[bd!]])
+    end
+end, {}) 
+
+-- OVERRIDE: close all but current buffer
+vim.api.nvim_create_user_command("Bda", function()
+    local ok, result
+    if require "nvim-tree.view".is_visible() then
+        local api = require "nvim-tree.api"
+        api.tree.close()
+        ok, result = pcall(vim.cmd, '%bd|e#|bd#')
+        api.tree.toggle(false, true)
+    else
+        ok, result = pcall(vim.cmd, '%bd|e#|bd#')
+    end
+    if not ok then
+        vim.cmd([[echo "E88: No write since last change for buffer (add ! to override)"]])
+    end
+end, {}) 
+
+-- OVERRIDE: handle nvim-tree edge-case when window splitting
+keymap("n", "<C-w><C-h>", function()
+    local tree_open = require "nvim-tree.view".is_visible()
+    if tree_open then
+        require "nvim-tree.api".tree.close()
+    end
+    local curr = vim.api.nvim_get_current_win()
+    vim.cmd([[wincmd h]])
+    local new = vim.api.nvim_get_current_win()
+    local name = vim.api.nvim_buf_get_name(0)
+    if curr == new then
+        vim.cmd([[vsplit | b# | wincmd h ]])
+    else
+        vim.cmd([[wincmd l]])
+        name = vim.api.nvim_buf_get_name(0)
+        vim.cmd([[b# | wincmd h]])
+        vim.cmd([[b ]] .. name)
+    end
+    if tree_open then
+        require "nvim-tree.api".tree.toggle(false, true)
+    end
+end, opts)
+

@@ -2,14 +2,9 @@
 vim.cmd('source ~/.config/nvim/.vimrc')
 require "user.options" 
 require "user.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp" -- will run the init.lua inside lsp dir
-require "user.treesitter"
-require "user.gitsigns"
-require "user.telescope"
-require "user.nvim-tree"
-require "user.comment"
 require "user.keymaps"
+require "user.cmp"
+require "user.treesitter"
+require "user.telescope"
 require "user.mkvim" -- will run the init.lua inside mkvim dir
 

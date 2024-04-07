@@ -15,7 +15,7 @@ set mouse=nvi " normal, visual, insert mode enable mouse
 set clipboard=unnamedplus " use the system clipboard - requires 'xclip' 
 set background=dark
 set nowrap
-set nohlsearch
+set hlsearch
 set updatetime=300 " faster completion?
 set ttimeout
 set ttimeoutlen=1
@@ -24,7 +24,7 @@ set showmode
 set backspace=2
 set notermguicolors
 set nocursorline
-syntax off
+syntax on
 filetype on 
 
 autocmd InsertEnter,InsertLeave * set cul!

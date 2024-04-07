@@ -58,14 +58,25 @@ if ! shopt -oq posix; then
 fi
 
 
+# ---------- Debian distro specific ----------- #
 
+# set debian_chroot
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
 
 
 # ---------------- Custom ------------------- #
-#
-# bind f5 to run a script
-# the '; echo' is required to remove a partial line break indicator
-bind '"\e[15~":"./scripts/run.sh; echo\n"'
+
 
 # open manpages in nvim
 viman () {
@@ -114,9 +125,6 @@ sandbox ()
 }
 
 
-. "$HOME/.cargo/env"
-
-
 mkvim()
 {
     dir=$(pwd)
@@ -142,6 +150,7 @@ mkvim()
         obsidian_pid=$!
     fi
     cd ~/Documents/Vault 
+    ./Files/AutoMd/generate_mds.sh
     sleep 3 
     last_file="$HOME/.local/state/mkvim/.last_file_opened"
     mkdir -p $(dirname $last_file) && touch $last_file
@@ -152,21 +161,15 @@ mkvim()
     cd $dir
 }
 
+# bind f5 to run a script
+# the '; echo' is required to remove a partial line break indicator
+bind '"\e[15~":"./scripts/run.sh; echo\n"'
+
+. "$HOME/.cargo/env"
+
 alias ..='cd ..'
 
-# ---------- Debian distro specific ----------- #
+PS1='\[\033[01;32m\]\h\[\033[00m\]:\w\$ '
 
-# set debian_chroot
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
