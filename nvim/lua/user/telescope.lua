@@ -12,7 +12,7 @@ telescope.setup{
   pickers = {
     find_files = {
         theme = "ivy",
-        hidden = true,
+        hidden = false,
         previewer = false,
         results_title = false,
         no_ignore = false, -- true to .gitignore (broken for some reason)
@@ -40,6 +40,15 @@ telescope.setup{
         layout_config = {
             height = 22
         },
+    },
+    git_status = {
+        theme = "ivy",
+        previewer = false,
+        initial_mode = "normal",
+        results_title = false,
+        layout_config = {
+            height = 10
+        },
     }
   },
   extensions = {
@@ -63,9 +72,12 @@ keymap("n", "<leader>o", ":Telescope find_files<CR>", opts)
 -- view open buffers
 keymap("n", "<leader>f", ":Telescope buffers<CR>", opts) -- mnemonic < ease of use
 
+-- view git modified files
+keymap("n", "<leader>c", ":Telescope git_status<CR>", opts) 
+
 -- find files ignored by git
 vim.api.nvim_create_user_command("FindIgnored", function()
-    require "telescope.builtin".find_files{no_ignore=true}
+    require "telescope.builtin".find_files{no_ignore=true, hidden=true}
 end, {}) 
 
 
