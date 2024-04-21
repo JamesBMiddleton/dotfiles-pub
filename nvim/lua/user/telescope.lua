@@ -49,6 +49,15 @@ telescope.setup{
         layout_config = {
             height = 10
         },
+        git_icons = {
+          added = "S", -- Staged
+          changed = "M", -- Modified
+          copied = "C",
+          deleted = "D",
+          renamed = "R",
+          unmerged = "!",
+          untracked = "U",
+        }
     }
   },
   extensions = {

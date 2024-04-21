@@ -31,11 +31,11 @@ nvim_tree.setup{
           },
           glyphs = {
             git = {
-              unstaged = "U",
+              unstaged = "M", -- Modified
               staged = "S",
-              unmerged = "M",
+              unmerged = "!",
               renamed = "R",
-              untracked = "-",
+              untracked = "U",
               deleted = "D",
               ignored = "~",
             },
