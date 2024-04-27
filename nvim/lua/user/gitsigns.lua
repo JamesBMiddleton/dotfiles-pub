@@ -2,36 +2,35 @@ local gitsigns = require "gitsigns"
 
 require('gitsigns').setup{
   on_attach = function(bufnr)
-
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
-
-    -- next git change
-    map('n', ']c', function()
-      if vim.wo.diff then
-        vim.cmd.normal({']c', bang = true})
-      else
-        gitsigns.next_hunk()
-      end
-    end)
-
-    -- previous git change
-    map('n', '[c', function()
-      if vim.wo.diff then
-        vim.cmd.normal({'[c', bang = true})
-      else
-        gitsigns.prev_hunk()
-      end
-    end)
-
-    -- open inline diff
-    map('n', 'hc', function()
-        gitsigns.preview_hunk_inline()
-    end)
-
   end
 }
+
+--- KEYMAPS ---
+local keymap = vim.keymap.set
+local opts = {noremap = true, silent = true}
+
+-- next git change
+keymap('n', ']c', function()
+  if vim.wo.diff then
+    vim.cmd.normal({']c', bang = true})
+  else
+    gitsigns.next_hunk()
+  end
+end, opts)
+
+-- previous git change
+keymap('n', '[c', function()
+  if vim.wo.diff then
+    vim.cmd.normal({'[c', bang = true})
+  else
+    gitsigns.prev_hunk()
+    vim.cmd([[ execute "normal zt" ]]) 
+  end
+end, opts)
+
+-- open inline diff
+keymap('n', 'hc', function()
+    gitsigns.preview_hunk_inline()
+    vim.cmd([[ execute "normal zt" ]]) 
+end, opts)
 

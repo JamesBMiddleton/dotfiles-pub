@@ -8,6 +8,7 @@ require "user.cmp"
 require "user.lsp" -- will run the init.lua inside lsp dir
 require "user.treesitter"
 require "user.gitsigns"
+require "user.conflicts"
 require "user.telescope"
 require "user.nvim-tree"
 require "user.comment"
