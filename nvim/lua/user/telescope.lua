@@ -50,7 +50,7 @@ telescope.setup{
             height = 10
         },
         git_icons = {
-          added = "S", -- Staged
+          added = "S", -- Staged 
           changed = "M", -- Modified
           copied = "C",
           deleted = "D",
@@ -124,3 +124,12 @@ vim.api.nvim_create_user_command("Find", function(args)
         additional_args=fwd_args
     }
 end, { nargs='*' })
+
+
+-- 
+-- fix git_status added ./.local/share/nvim/site/pack/packer/start/telescope.nvim/lua/telescope/make_entry.lua:1342
+--
+--   if x == "M" then
+--      status_x = git_abbrev["A"]
+--   end
+--

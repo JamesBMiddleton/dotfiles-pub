@@ -24,13 +24,11 @@ keymap('n', '[c', function()
     vim.cmd.normal({'[c', bang = true})
   else
     gitsigns.prev_hunk()
-    vim.cmd([[ execute "normal zt" ]]) 
   end
 end, opts)
 
 -- open inline diff
 keymap('n', 'hc', function()
     gitsigns.preview_hunk_inline()
-    vim.cmd([[ execute "normal zt" ]]) 
 end, opts)
 
