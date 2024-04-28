@@ -157,36 +157,6 @@ end, opts)
 keymap("n", "<leader>E", ":NvimTreeToggle<CR>", opts)
 
 
--- OVERRIDE: close buffer without focusing nvim-tree
-vim.cmd([[cmap bd Bd]])
-vim.api.nvim_create_user_command("Bd", function()
-    local ok, result 
-    if require "nvim-tree.view".is_visible() then
-        local api = require "nvim-tree.api"
-        api.tree.close()
-        ok, result = pcall(vim.cmd, 'bd')
-        api.tree.toggle(false, true)
-    else
-        ok, result = pcall(vim.cmd, 'bd')
-    end
-    if not ok then
-        vim.cmd([[echo "E88: No write since last change for buffer (add ! to override)"]])
-    end
-end, {}) 
-
--- OVERRIDE: force close buffer without focusing nvim-tree
-vim.cmd([[cmap bd! Bdforce]])
-vim.api.nvim_create_user_command("Bdforce", function()
-    if require "nvim-tree.view".is_visible() then
-        local api = require "nvim-tree.api"
-        api.tree.close()
-        vim.cmd([[bd!]])
-        api.tree.toggle(false, true)
-    else
-        vim.cmd([[bd!]])
-    end
-end, {}) 
-
 -- OVERRIDE: close all but current buffer
 vim.api.nvim_create_user_command("Bda", function()
     local ok, result
