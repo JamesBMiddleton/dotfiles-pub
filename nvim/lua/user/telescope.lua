@@ -6,7 +6,13 @@ telescope.setup{
     mappings = {
       n = {
         ["<esc>"] = telescope.close,
-      }
+        ["<C-k>"] = actions.cycle_history_next,
+        ["<C-j>"] = actions.cycle_history_prev,
+      },
+      i = {
+        ["<C-k>"] = actions.cycle_history_next,
+        ["<C-j>"] = actions.cycle_history_prev,
+      },
     }
   },
   pickers = {

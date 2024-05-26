@@ -8,7 +8,7 @@ hl(0, '@punctuation.special.markdown', { fg = "#375a9f", bg = 'NONE', bold = fal
 hl(0, '@text.reference.markdown_inline', { fg = "#375a9f", bg = 'NONE', bold = true }) -- link text
 hl(0, '@nospell.markdown_inline', { fg = "#375a9f", bg = 'NONE', bold = false}) -- [[link]] 
 hl(0,'Special', { fg = "#33374c", bg = 'NONE', bold = false}) -- stuff between two *** *** 
-hl(0,'Underlined', { underline = false }) -- stuff between two *** *** ?
+hl(0,'Underlined', { fg = "#375a9f", bg = 'NONE', bold = true, underline = false }) -- stuff between two *** *** ?
 hl(0,'String', { fg = "#4c6286", bg = 'NONE', bold = false }) -- inline code
 hl(0, '@text.title.markdown', { fg = "#000000", bg = 'NONE', bold = true }) -- # titles
 hl(0, '@text.literal.block.markdown', { fg = "#4c6286", bg = 'NONE', bold = false }) -- # code block
