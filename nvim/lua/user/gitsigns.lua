@@ -28,7 +28,7 @@ keymap('n', '[c', function()
 end, opts)
 
 -- open inline diff
-keymap('n', 'hc', function()
+keymap('n', 'fc', function()
     gitsigns.preview_hunk_inline()
 end, opts)
 
