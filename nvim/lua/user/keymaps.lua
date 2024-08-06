@@ -27,8 +27,8 @@ end, {})
 function get_pattern(direction)
     local pattern = "^\\s*$"
     if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
-        -- pattern = "^\\s*\\(\\(\\%(\\<if\\>\\|\\<while\\>\\|\\<for\\>\\|\\<do\\>\\)\\)\\@!\\S\\+\\s\\+\\)\\+\\S\\+(.*)\\s*\\n*\\s*{" -- for definitions only
-        pattern = "^\\s*\\(\\(\\%(\\<if\\>\\|\\<while\\>\\|\\<for\\>\\|\\<do\\>\\)\\)\\@!\\S\\+\\s\\+\\)\\+\\S\\+("
+        pattern = "^\\s*\\(\\(\\%(\\<if\\>\\|\\<while\\>\\|\\<for\\>\\|\\<do\\>\\)\\)\\@!\\S\\+\\s\\+\\)\\+\\S\\+(.*)\\s*\\n*\\s*{" -- for definitions only
+        -- pattern = "^\\s*\\(\\(\\%(\\<if\\>\\|\\<while\\>\\|\\<for\\>\\|\\<do\\>\\)\\)\\@!\\S\\+\\s\\+\\)\\+\\S\\+("
     elseif vim.bo.filetype == "python" then
         pattern = "\\(^\\s*def\\s*\\S\\+\\s*(.*)\\s*:\\)"
     elseif vim.bo.filetype == "rust" then

@@ -15,6 +15,8 @@ keymap('n', ']c', function()
     vim.cmd.normal({']c', bang = true})
   else
     gitsigns.next_hunk()
+    vim.cmd([[ execute "normal zz" ]])
+
   end
 end, opts)
 
@@ -24,6 +26,7 @@ keymap('n', '[c', function()
     vim.cmd.normal({'[c', bang = true})
   else
     gitsigns.prev_hunk()
+    vim.cmd([[ execute "normal zz" ]])
   end
 end, opts)
 
