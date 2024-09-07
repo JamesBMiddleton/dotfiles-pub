@@ -98,8 +98,21 @@ sandbox ()
     chmod +x scripts/run.sh
     if [ $1 = "c" ]; then
         printf '#!/bin/bash\ngcc main.c\n./a.out\n' > scripts/run.sh
-        printf '#include <stdio.h>\n#include <stdlib.h>\n\nint main()\n{\n    return 0;\n}' \
-            > main.c
+        printf '#include <stdio.h>
+#include <stdlib.h>\n
+typedef float f32;
+typedef unsigned char u8;
+typedef unsigned short int u16;
+typedef unsigned int u32;
+typedef signed char i8;
+typedef signed short int i16;
+typedef signed int i32;
+#define bool _Bool
+#define true 1
+#define false 0
+
+int main()\n{\n    return 0;\n}' \
+    > main.c
         nvim $HOME/sandbox/main.c
     elif [ $1 = "cpp" ]; then
         printf '#!/bin/bash\ng++ main.cpp\n./a.out\n' > scripts/run.sh
