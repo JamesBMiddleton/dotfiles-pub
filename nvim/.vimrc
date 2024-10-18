@@ -116,3 +116,9 @@ endfunction
 
 nnoremap gcc :call ToggleComment()<cr>
 vnoremap gc :call ToggleComment()<cr>
+
+" system clipboard support for WSL2
+" xnoremap y :w !clip.exe<CR><CR>
+" nnoremap yy V:w !clip.exe<CR><CR>
+" xnoremap p d:read !powershell.exe Get-Clipboard \| tr -d '\r' \| sed -z '$ s/\\n$//'<CR><CR>
+" nnoremap p :read !powershell.exe Get-Clipboard \| tr -d '\r' \| sed -z '$ s/\\n$//'<CR><CR>
