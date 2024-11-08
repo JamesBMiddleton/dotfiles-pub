@@ -114,25 +114,20 @@ keymap("n", "<leader>o", function()
     }
 end, opts)
 
--- live_grep the provided glob input
-vim.api.nvim_create_user_command("Find", function(args)
-    local fwd_args = {}
-    if vim.g.telescope_ignore_toggle == true then
-        fwd_args = {"-uuu"}
-    end
-
-    glob = args['args']
-    if glob == "" then
-        glob = "**/*"
+-- live_grep, passing args directly to ripgrep
+vim.api.nvim_create_user_command("LiveGrep", function(opts)
+    if opts.args == "" then
+        print("e.g. :LiveGrep -g include_dir/** -g !**/exclude_subdir/ -g !*.c -uuu")
+        return
     end
     require "telescope.builtin".live_grep{
-        glob_pattern=glob,
-        additional_args=fwd_args
+        additional_args = function()
+            return vim.split(opts.args, " ")
+        end,
     }
 end, { nargs='*' })
 
 
--- 
 -- fix git_status added ./.local/share/nvim/site/pack/packer/start/telescope.nvim/lua/telescope/make_entry.lua:1342
 --
 --   if x == "M" then

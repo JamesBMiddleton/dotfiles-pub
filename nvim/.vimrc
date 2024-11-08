@@ -52,12 +52,12 @@ vnoremap > >gv
 " don't include newline when going to end of line in visual mode
 vnoremap $ $h
 
-" fast scroll
-nnoremap J 10<C-e>M
-nnoremap K 10<C-y>M
+" fast scroll, don't add to jumplist (Ctrl+I/O)
+nnoremap <silent> J :<C-u>execute "keepjumps normal! 10<C-v><C-e>M"<CR>
+nnoremap <silent> K :<C-u>execute "keepjumps normal! 10<C-v><C-y>M"<CR>
+vnoremap <silent> J :<C-u>execute "keepjumps normal! 10<C-v><C-e>M"<CR>
+vnoremap <silent> K :<C-u>execute "keepjumps normal! 10<C-v><C-y>M"<CR>
 nnoremap <C-e> J
-vnoremap J 10<C-e>M
-vnoremap K 10<C-y>M
 vnoremap <C-e> J
 
 " don't yank text over paste selection in visual mode
@@ -116,9 +116,3 @@ endfunction
 
 nnoremap gcc :call ToggleComment()<cr>
 vnoremap gc :call ToggleComment()<cr>
-
-" system clipboard support for WSL2
-" xnoremap y :w !clip.exe<CR><CR>
-" nnoremap yy V:w !clip.exe<CR><CR>
-" xnoremap p d:read !powershell.exe Get-Clipboard \| tr -d '\r' \| sed -z '$ s/\\n$//'<CR><CR>
-" nnoremap p :read !powershell.exe Get-Clipboard \| tr -d '\r' \| sed -z '$ s/\\n$//'<CR><CR>
