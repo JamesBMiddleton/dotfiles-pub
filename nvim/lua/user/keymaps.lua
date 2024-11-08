@@ -22,36 +22,6 @@ vim.api.nvim_create_user_command("Bda", function()
     end
 end, {}) 
 
--- use { } to move between function definitions/declarations regardless of indentation
--- C++ constructors not captured
-function get_pattern(direction)
-    local pattern = "^\\s*$"
-    if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
-        pattern = "^\\s*$\\n^\\s*\\(\\(\\%(\\<if\\>\\|\\<while\\>\\|\\<for\\>\\|\\<do\\>\\)\\)\\@!\\S\\+\\s\\+\\)\\+\\S\\+(.*)\\s*\\n*\\s*{" -- for definitions only
-    elseif vim.bo.filetype == "python" then
-        pattern = "\\(^\\s*def\\s*\\S\\+\\s*(.*)\\s*:\\)"
-    elseif vim.bo.filetype == "rust" then
-        pattern = "\\(^.*fn\\s*\\S\\+\\s*(.*)\\)"
-    end
-
-    local search = direction .. pattern
-    vim.cmd(search)
-end
-
-keymap("n", "}", function() 
-    get_pattern("/") 
-    vim.cmd([[ execute "normal j" ]]) 
-    vim.cmd([[ execute "normal zt" ]]) 
-end, opts)
-
-keymap("n", "{", function() 
-    vim.cmd([[ execute "normal k" ]]) 
-    get_pattern("?") 
-    vim.cmd([[ execute "normal j" ]]) 
-    vim.cmd([[ execute "normal zt" ]]) 
-end, opts)
-
-
 -- move open buffer to right/left/upper/lower window
 -- open a window if one doesn't exist
 vim.cmd([[map <C-w><C-w> <Nop>]])
