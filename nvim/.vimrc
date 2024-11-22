@@ -55,8 +55,9 @@ vnoremap $ $h
 " fast scroll, don't add to jumplist (Ctrl+I/O)
 nnoremap <silent> J :<C-u>execute "keepjumps normal! 10<C-v><C-e>M"<CR>
 nnoremap <silent> K :<C-u>execute "keepjumps normal! 10<C-v><C-y>M"<CR>
-vnoremap <silent> J :<C-u>execute "keepjumps normal! 10<C-v><C-e>M"<CR>
-vnoremap <silent> K :<C-u>execute "keepjumps normal! 10<C-v><C-y>M"<CR>
+" @todo fast scroll in visual mode without adding to jumplist
+vnoremap J 10<C-e>M
+vnoremap K 10<C-y>M
 nnoremap <C-e> J
 vnoremap <C-e> J
 
