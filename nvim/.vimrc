@@ -46,20 +46,20 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " stay in visual mode when indenting
-vnoremap < <gv 
-vnoremap > >gv
+xnoremap < <gv 
+xnoremap > >gv
 
 " don't include newline when going to end of line in visual mode
-vnoremap $ $h
+xnoremap $ $h
 
 " fast scroll, don't add to jumplist (Ctrl+I/O)
 nnoremap <silent> J :<C-u>execute "keepjumps normal! 10<C-v><C-e>M"<CR>
 nnoremap <silent> K :<C-u>execute "keepjumps normal! 10<C-v><C-y>M"<CR>
 " @todo fast scroll in visual mode without adding to jumplist
-vnoremap J 10<C-e>M
-vnoremap K 10<C-y>M
+xnoremap J 10<C-e>M
+xnoremap K 10<C-y>M
 nnoremap <C-e> J
-vnoremap <C-e> J
+xnoremap <C-e> J
 
 " don't yank text over paste selection in visual mode
 xnoremap p P
@@ -116,4 +116,4 @@ function! ToggleComment()
 endfunction
 
 nnoremap gcc :call ToggleComment()<cr>
-vnoremap gc :call ToggleComment()<cr>
+xnoremap gc :call ToggleComment()<cr>

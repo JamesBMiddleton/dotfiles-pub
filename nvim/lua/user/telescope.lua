@@ -35,6 +35,7 @@ telescope.setup{
         },
         initial_mode = "normal",
         sort_lastused = true,
+        sort_mru = true,
         path_display = {"tail"}, -- show filename, only show path if two files of same name - potential performance hit!
         ignore_current_buffer = true,
     },

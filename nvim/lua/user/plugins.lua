@@ -49,8 +49,8 @@ return require("packer").startup(function(use)
     use {"williamboman/mason.nvim", commit="751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10"}
 
     -- syntax highlighting + syntax aware movements
-	use {"nvim-treesitter/nvim-treesitter", run = "TSUpdate", commit="f84887230af1f7581e29ccd5d93f59d98058d565"} 
-	use {"nvim-treesitter/nvim-treesitter-textobjects", commit="3e450cd85243da99dc23ebbf14f9c70e9a0c26a4"} 
+	use {"nvim-treesitter/nvim-treesitter", run = "TSUpdate"} 
+	use {"nvim-treesitter/nvim-treesitter-textobjects"} 
 
     -- git integration
 	use {"lewis6991/gitsigns.nvim", commit="3e6e91b09f0468c32d3b96dcacf4b947f037ce25"}
