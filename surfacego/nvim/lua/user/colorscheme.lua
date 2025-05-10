@@ -1,0 +1,5 @@
+vim.cmd.colorscheme("default")
+vim.api.nvim_set_hl(0, "Visual", { fg = "black", bg = "yellow" })
+vim.api.nvim_set_hl(0, "CursorLine", { fg = "NONE", bg = "brown" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "NONE", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "brown", bg = "NONE" })

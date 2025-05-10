@@ -1,18 +1,14 @@
--- :help keymap
-
-vim.g.mapleader = " "  -- space as leader key
+vim.g.mapleader = " "      -- space as leader key
 vim.g.maplocalleader = " " -- space as local leader key?
 
 local keymap = vim.keymap.set
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
--- stop space moving cursor (idk why "" not "n")
-keymap("", "<Space>", "<Nop>", opts)  
+-- stop space moving cursor
+keymap("", "<Space>", "<Nop>", opts)
 
 -- remove search highlighting (<cr> = carriage return)
--- keymap("n", "<Space><Space>", ":noh<cr>", opts)
 keymap("n", "<Space><Space>", ":set invhls<CR>", opts)
-
 
 -- lsp or ctags omni-autocompletion
 keymap("n", "gd", "<C-]>zt", opts)
@@ -20,14 +16,40 @@ keymap("i", "<C-Space>", "<C-X><C-O>", opts)
 keymap("i", "<C-j>", "<C-N>", opts)
 keymap("i", "<C-k>", "<C-P>", opts)
 
+-- better window navigation
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- stay in visual mode when indenting
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
+-- don't include newline when going to end of line in visual mode
+keymap("v", "$", "$h", opts)
+
+-- don't yank text over paste selection in visual mode
+keymap("v", "p", "P", opts)
+
+-- toggle cursorline between normal and insert modes
+vim.cmd([[autocmd InsertEnter,InsertLeave * set cul!]])
+
+-- fast scroll, don't add to jumplist (Ctrl+I/O) in normal mode
+vim.cmd([[nnoremap <silent> J :<C-u>execute "keepjumps normal! 10<C-v><C-e>M"<CR>]])
+vim.cmd([[nnoremap <silent> K :<C-u>execute "keepjumps normal! 10<C-v><C-y>M"<CR>]])
+keymap("v", "J", "10<C-e>M", opts)
+keymap("v", "K", "10<C-e>M", opts)
+keymap("n", "<C-e>", "J", opts)
+keymap("v", "<C-e>", "J", opts)
+
 -- close all but current buffer
 vim.api.nvim_create_user_command("Bda", function()
-    local ok, result
-    ok, result = pcall(vim.cmd, '%bd|e#|bd#')
+    local ok, result = pcall(vim.cmd, '%bd|e#|bd#')
     if not ok then
         vim.cmd([[echo "E88: No write since last change for buffer (add ! to override)"]])
     end
-end, {}) 
+end, {})
 
 -- move open buffer to right/left/upper/lower window
 -- open a window if one doesn't exist
@@ -88,5 +110,3 @@ keymap("n", "<C-w><C-h>", function()
         vim.cmd([[b ]] .. name)
     end
 end, opts)
-
-
