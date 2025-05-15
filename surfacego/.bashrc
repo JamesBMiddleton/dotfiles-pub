@@ -36,25 +36,25 @@ alias ll='ls -alF'
 
 PS1='\[\033[01;32m\]\h\[\033[00m\]:\w\$ '
 
-# nord colorscheme - rgb+cmyk+gray+white
-echo -en "\e]P02e3440" #black (nord0)
-echo -en "\e]P1bf616a" #darkred (nord11) 
-echo -en "\e]P2a3be8c" #darkgreen (nord14)
-echo -en "\e]P3ebcb8b" #darkyellow (nord13)
-echo -en "\e]P45e81ac" #darkblue (nord10)
-echo -en "\e]P58c6f85" #darkmagenta (nord15)
-echo -en "\e]P688c0d0" #darkcyan (nord8)
-echo -en "\e]P7c0c4cf" #lightgray (nord4-darkened)
-echo -en "\e]P84c566a" #darkgray (nord3)
-# repeats
-echo -en "\e]P9bf616a" #red (nord11)
-echo -en "\e]PAa3be8c" #green (nord14)
-echo -en "\e]PBebcb8b" #yellow (nord13)
-echo -en "\e]PC5e81ac" #blue (nord9)
-echo -en "\e]PDb48ead" #magenta (nord15)
-echo -en "\e]PE88c0d0" #cyan (nord8)
-echo -en "\e]PFc0c4cf" #white (nord4-darkened)
 
+# 3bit darkplus theme
+echo -en "\e]P01e1e1e" #black
+echo -en "\e]P1ce9178" #darkred
+echo -en "\e]P24ec9b0" #darkgreen
+echo -en "\e]P3dcdcaa" #darkyellow
+echo -en "\e]P4569cd6" #darkblue
+echo -en "\e]P5c586c0" #darkmagenta
+echo -en "\e]P69cdcfe" #darkcyan
+echo -en "\e]P7c8c8c8" #lightgray
+#repeats
+echo -en "\e]P8c8c8c8" #darkgray
+echo -en "\e]P9ce9178" #red
+echo -en "\e]PA4ec9b0" #green
+echo -en "\e]PBdcdcaa" #yellow
+echo -en "\e]PC569cd6" #blue
+echo -en "\e]PDc586c0" #magenta
+echo -en "\e]PE9cdcfe" #cyan
+echo -en "\e]PFc8c8c8" #white
 
 # create a sandbox for a given language
 sandbox ()
