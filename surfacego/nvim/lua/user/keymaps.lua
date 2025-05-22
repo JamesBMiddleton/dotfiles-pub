@@ -10,11 +10,30 @@ keymap("", "<Space>", "<Nop>", opts)
 -- remove search highlighting (<cr> = carriage return)
 keymap("n", "<Space><Space>", ":set invhls<CR>", opts)
 
--- lsp or ctags omni-autocompletion
+-- lsp or ctags go-to-definition
 keymap("n", "gd", "<C-]>zt", opts)
-keymap("i", "<C-Space>", "<C-X><C-O>", opts)
-keymap("i", "<C-j>", "<C-N>", opts)
-keymap("i", "<C-k>", "<C-P>", opts)
+
+-- smart tab navigate down completion list
+keymap("i", "<Tab>", "v:lua.smart_tab()", { expr = true, noremap = true })
+function _G.smart_tab()
+    if vim.fn.pumvisible() == 1 then return "<C-N>" else return "\t" end
+end
+
+-- smart tab navigate up completion list
+keymap("i", "<S-Tab>", "v:lua.smart_shift_tab()", { expr = true, noremap = true })
+function _G.smart_shift_tab()
+    if vim.fn.pumvisible() == 1 then return "<C-P>" else return "\t" end
+end
+
+-- smart tab show completions if available
+vim.api.nvim_create_autocmd("InsertCharPre", {
+    pattern = "*.c, *.lua",
+    callback = function()
+        if vim.fn.pumvisible() == 0 and vim.fn.getline("."):sub(vim.fn.col(".") - 1):match("%w") then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-X><C-O>", true, false, true), "n")
+        end
+    end
+})
 
 -- better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -32,14 +51,11 @@ keymap("v", "$", "$h", opts)
 -- don't yank text over paste selection in visual mode
 keymap("v", "p", "P", opts)
 
--- toggle cursorline between normal and insert modes
-vim.cmd([[autocmd InsertEnter,InsertLeave * set cul!]])
-
 -- fast scroll, don't add to jumplist (Ctrl+I/O) in normal mode
 vim.cmd([[nnoremap <silent> J :<C-u>execute "keepjumps normal! 10<C-v><C-e>M"<CR>]])
 vim.cmd([[nnoremap <silent> K :<C-u>execute "keepjumps normal! 10<C-v><C-y>M"<CR>]])
 keymap("v", "J", "10<C-e>M", opts)
-keymap("v", "K", "10<C-e>M", opts)
+keymap("v", "K", "10<C-y>M", opts)
 keymap("n", "<C-e>", "J", opts)
 keymap("v", "<C-e>", "J", opts)
 

@@ -8,6 +8,14 @@ local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float({ })<CR>', opts)
 end
 
+vim.diagnostic.config({
+    update_in_insert = true,
+    float = {
+        header = "",
+        prefix = ""
+    }
+})
+
 require("lspconfig").clangd.setup({
     on_attach = on_attach,
 })

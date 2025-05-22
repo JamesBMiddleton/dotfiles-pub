@@ -26,15 +26,14 @@ set.syntax = "on"
 set.filetype = "on"
 set.autowrite = true -- autosave when quitting / changing buffers
 set.undofile = true -- save undo history between sessions
-set.termguicolors = true -- use the terminal's color palette rather than nvim's
+set.termguicolors = false -- Linux TTY doesn't support
 set.showmode = false -- remove --INSERT-- etc...
 set.signcolumn = "yes" -- always show the lefthand column with lsp diagnostics etc..
-set.cursorline = true -- highlights the line your cursor is currently on
+set.cursorline = false -- highlights the line your cursor is currently on
 set.laststatus = 0 -- status line is OFF
 set.showtabline = 2
 set.tabline = " %=--- %{expand('%:~:.')} --- %m%= " -- only show relative path and save status in center  
 set.rulerformat = " %=%l,%c%V  %P" -- don't show Top/Bottom, only col and line number
-set.colorcolumn = "80"
 set.titlestring = "%t %m"
 set.title = true
 set.completeopt = "menu,menuone,noselect,noinsert"

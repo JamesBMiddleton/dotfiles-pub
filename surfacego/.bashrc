@@ -36,25 +36,24 @@ alias ll='ls -alF'
 
 PS1='\[\033[01;32m\]\h\[\033[00m\]:\w\$ '
 
-
-# 3bit darkplus theme
+# ANSI-compliant 3-bit darkplus theme
 echo -en "\e]P01e1e1e" #black
-echo -en "\e]P1ce9178" #darkred
-echo -en "\e]P24ec9b0" #darkgreen
-echo -en "\e]P3dcdcaa" #darkyellow
-echo -en "\e]P4569cd6" #darkblue
-echo -en "\e]P5c586c0" #darkmagenta
-echo -en "\e]P69cdcfe" #darkcyan
-echo -en "\e]P7c8c8c8" #lightgray
-#repeats
-echo -en "\e]P8c8c8c8" #darkgray
-echo -en "\e]P9ce9178" #red
-echo -en "\e]PA4ec9b0" #green
-echo -en "\e]PBdcdcaa" #yellow
-echo -en "\e]PC569cd6" #blue
-echo -en "\e]PDc586c0" #magenta
-echo -en "\e]PE9cdcfe" #cyan
-echo -en "\e]PFc8c8c8" #white
+echo -en "\e]P1ce9178" #red
+echo -en "\e]P24ec9b0" #green
+echo -en "\e]P3dcdcaa" #yellow
+echo -en "\e]P4569cd6" #blue
+echo -en "\e]P5c586c0" #magenta
+echo -en "\e]P69cdcfe" #cyan
+echo -en "\e]P7c8c8c8" #white
+# repeat colors for terminals supporting 4-bit
+echo -en "\e]P8c8c8c8" #brightgray
+echo -en "\e]P9ce9178" #brightred
+echo -en "\e]PA4ec9b0" #brightgreen
+echo -en "\e]PBdcdcaa" #brightyellow
+echo -en "\e]PC569cd6" #brightblue
+echo -en "\e]PDc586c0" #brightmagenta
+echo -en "\e]PE9cdcfe" #brightcyan
+echo -en "\e]PFc8c8c8" #brightwhite
 
 # create a sandbox for a given language
 sandbox ()
