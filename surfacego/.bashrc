@@ -36,7 +36,7 @@ alias ll='ls -alF'
 
 PS1='\[\033[01;32m\]\h\[\033[00m\]:\w\$ '
 
-# ANSI-compliant 3-bit darkplus theme
+# ANSI-compliant 3-bit dark+ theme
 echo -en "\e]P01e1e1e" #black
 echo -en "\e]P1ce9178" #red
 echo -en "\e]P24ec9b0" #green
@@ -54,6 +54,7 @@ echo -en "\e]PC569cd6" #brightblue
 echo -en "\e]PDc586c0" #brightmagenta
 echo -en "\e]PE9cdcfe" #brightcyan
 echo -en "\e]PFc8c8c8" #brightwhite
+# Too dark? Try light+!
 
 # create a sandbox for a given language
 sandbox ()

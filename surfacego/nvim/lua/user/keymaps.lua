@@ -10,6 +10,10 @@ keymap("", "<Space>", "<Nop>", opts)
 -- remove search highlighting (<cr> = carriage return)
 keymap("n", "<Space><Space>", ":set invhls<CR>", opts)
 
+-- visual line navigation
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
+
 -- lsp or ctags go-to-definition
 keymap("n", "gd", "<C-]>zt", opts)
 

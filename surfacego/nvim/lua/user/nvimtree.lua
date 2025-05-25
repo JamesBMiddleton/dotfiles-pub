@@ -1,8 +1,5 @@
 local nvim_tree = require "nvim-tree"
 
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
-
 nvim_tree.setup {
     on_attach = function(bufnr)
         local api = require('nvim-tree.api')
@@ -48,19 +45,6 @@ nvim_tree.setup {
     }
 }
 
--- open nvim-tree if nvim opened in directory, used to be a simple option...
--- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup
-local function open_nvim_tree(data)
-    local directory = vim.fn.isdirectory(data.file) == 1
-    if not directory then
-        return
-    end
-    vim.cmd.cd(data.file)
-    require("nvim-tree.api").tree.open()
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-
 --- KEYMAPS ---
 
 local keymap = vim.keymap.set
@@ -79,43 +63,3 @@ end, opts)
 
 -- toggle nvim-tree
 keymap("n", "<leader>E", ":NvimTreeToggle<CR>", opts)
-
-
--- OVERRIDE: close all but current buffer
-vim.api.nvim_create_user_command("Bda", function()
-    local ok, result
-    if require "nvim-tree.view".is_visible() then
-        local api = require "nvim-tree.api"
-        api.tree.close()
-        ok, result = pcall(vim.cmd, '%bd|e#|bd#')
-        api.tree.toggle(false, true)
-    else
-        ok, result = pcall(vim.cmd, '%bd|e#|bd#')
-    end
-    if not ok then
-        vim.cmd([[echo "E88: No write since last change for buffer (add ! to override)"]])
-    end
-end, {})
-
--- OVERRIDE: handle nvim-tree edge-case when window splitting
-keymap("n", "<C-w><C-h>", function()
-    local tree_open = require "nvim-tree.view".is_visible()
-    if tree_open then
-        require "nvim-tree.api".tree.close()
-    end
-    local curr = vim.api.nvim_get_current_win()
-    vim.cmd([[wincmd h]])
-    local new = vim.api.nvim_get_current_win()
-    local name = vim.api.nvim_buf_get_name(0)
-    if curr == new then
-        vim.cmd([[vsplit | b# | wincmd h ]])
-    else
-        vim.cmd([[wincmd l]])
-        name = vim.api.nvim_buf_get_name(0)
-        vim.cmd([[b# | wincmd h]])
-        vim.cmd([[b ]] .. name)
-    end
-    if tree_open then
-        require "nvim-tree.api".tree.toggle(false, true)
-    end
-end, opts)

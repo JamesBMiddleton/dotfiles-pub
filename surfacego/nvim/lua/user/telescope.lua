@@ -56,7 +56,7 @@ telescope.setup {
                 height = 10
             },
             git_icons = {
-                added = "S", -- Staged
+                added = "S",   -- Staged
                 changed = "M", -- Modified
                 copied = "C",
                 deleted = "D",

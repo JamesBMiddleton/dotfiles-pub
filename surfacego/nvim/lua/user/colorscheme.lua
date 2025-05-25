@@ -1,3 +1,4 @@
+vim.api.nvim_set_hl(0, "TabLine", { ctermfg = 7, ctermbg = "NONE" })
 vim.api.nvim_set_hl(0, "Visual", { ctermfg = 0, ctermbg = 4 })
 vim.api.nvim_set_hl(0, "Comment", { ctermfg = 7, ctermbg = "NONE" })
 vim.api.nvim_set_hl(0, "Type", { ctermfg = 2, ctermbg = "NONE" })
@@ -18,3 +19,8 @@ vim.api.nvim_set_hl(0, "cStorageClass", { ctermfg = 4, ctermbg = "NONE" })
 
 vim.api.nvim_set_hl(0, "@variable", { ctermfg = 6, ctermbg = "NONE" })
 
+vim.api.nvim_set_hl(0, "markdownBold", { ctermfg = 4, ctermbg = "NONE" })
+vim.api.nvim_set_hl(0, "markdownItalic", { ctermfg = 6, ctermbg = "NONE" })
+vim.api.nvim_set_hl(0, "markdownCode", { ctermfg = 3, ctermbg = "NONE" })
+vim.api.nvim_set_hl(0, "markdownCodeBlock", { ctermfg = 3, ctermbg = "NONE" })
+vim.api.nvim_set_hl(0, "markdownListMarker", { ctermfg = 7, ctermbg = "NONE" })
